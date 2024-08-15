@@ -2,6 +2,14 @@
   "networkId": 1,
   "tokens": [
     {
+      "id": "0000000000000000000000000000000000000000000000000000000000000000",
+      "name": "Alephium",
+      "symbol": "ALPH",
+      "decimals": 18,
+      "description": "Alephium is a scalable, decentralized, and secure blockchain platform that enables the creation of fast and secure applications.",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/ALPH.png"
+    },
+    {
       "id": "bed35ce97166170f91a8cdb35948b8696aa67dbd573ee0c5cc572bb8c44ddb01",
       "name": "Test BTC",
       "symbol": "TBTC",
@@ -64,6 +72,110 @@
       "decimals": 18,
       "description": "DJ Fetamin fanclub token",
       "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/FETA.png"
+    },
+    {
+      "id": "99d91e5ab1b054da64c9933c126297c5067d7e2c8b08be8095d1aeab9f0c9201",
+      "name": "Squirrel",
+      "symbol": "SQRL",
+      "decimals": 4,
+      "description": "Your passive-aggressive backyard squirrel",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/SQRL.png"
+    },
+    {
+      "id": "649fcbc20e2dbbc42b55c8415b372c6bea96e7d0984698d045a1fd11f6f11f00",
+      "name": "GAG",
+      "symbol": "GAG",
+      "decimals": 6,
+      "description": "Gee Arc Gee",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/GAG.png"
+    },
+    {
+      "id": "1441e27ae0fa5217ad8c75fc20e6311247c159b12949d79e461e98bd02ca8e00",
+      "name": "XDF",
+      "symbol": "XDF",
+      "decimals": 6,
+      "description": "Token Description",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/XDF.png"
+    },
+    {
+      "id": "43c18bb5049377028a2f3b1cd0ab980c25cf45603ab8ac7451a6c3e25c301700",
+      "name": "GGD",
+      "symbol": "GGD",
+      "decimals": 6,
+      "description": "Token Description",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/GGD.png"
+    },
+    {
+      "id": "03f2a63cef2530ecbc637da7f6dbf99fee493772c64ef19179349a6db4f67e00",
+      "name": "FOX",
+      "symbol": "FOX",
+      "decimals": 6,
+      "description": "Token Description",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/FOX.png"
+    },
+    {
+      "id": "54e825faa9e6d9d393b1c4fddd6d2a330b76e9ea630738a409cf07ccf7af3300",
+      "name": "KOBE",
+      "symbol": "KOBE",
+      "decimals": 6,
+      "description": "Token Description",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/KOBE.png"
+    },
+    {
+      "id": "7140fef3f630aef6effc6aa03d879cb549718636cfb83718097da887a72dae00",
+      "name": "ANS",
+      "symbol": "ANS",
+      "decimals": 18,
+      "description": "The token of the Alephium Name Service.",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/ANS.png"
+    },
+    {
+      "id": "ecdcbfe20a2c998f261d81d8c4bbb685d486aca383b0a10a05d5375d95389500",
+      "name": "123",
+      "symbol": "123",
+      "decimals": 6,
+      "description": "Token Description",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/123.png"
+    },
+    {
+      "id": "8e6877d8dee708506625a77d73f62210dce24564cfa9ec93c0df02f2ba519b00",
+      "name": "SWAPA",
+      "symbol": "SWAPA",
+      "decimals": 18,
+      "description": "SWAPA on testnet. The first veDEX on Alephium",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/SWAPA.png"
+    },
+    {
+      "id": "2e15aa445eb2ed419cd786b8640955272d6f86b7ff5405d08f279623c3a83900",
+      "name": "xSWAPA",
+      "symbol": "xSWAPA",
+      "decimals": 18,
+      "description": "xSWAPA on testnet. xSWAPA is converted SWAPA, serving enabling you to vote and earn fees",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/xSWAPA.png"
+    },
+    {
+      "id": "c7da969f8a4000ca5d8a589d8df5424a30cb7dbc66a9bb196fc0191ed7423b00",
+      "name": "Vereenigde Oostindische Compagnie",
+      "symbol": "VOC",
+      "decimals": 30,
+      "description": "spices for all",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/VOC.png"
+    },
+    {
+      "id": "da757dd1da7016d3376c5176beeeb4a5561b44da3d292d99abdf4b38946f6c00",
+      "name": "silver",
+      "symbol": "SILVER",
+      "decimals": 30,
+      "description": "Silver, almost as good as $GOLD",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/SILVER.png"
+    },
+    {
+      "id": "40af97e88f2c79311ebce21b8e0d575fed6d555713fdec05dfbf5d863d6d1e00",
+      "name": "Gold Castle Club",
+      "symbol": "GOLD",
+      "decimals": 0,
+      "description": "$GOLD on testnet",
+      "logoURI": "https://raw.githubusercontent.com/alephium/token-list/master/logos/GOLD.png"
     }
   ]
 }

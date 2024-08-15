@@ -24,14 +24,24 @@ import testnetJson from '../../tokens/testnet.json'
 import { checkDuplicates } from '../utils'
 import devnetJson from './devnet.json'
 
-const mainnetTokenList = mainnetJson as TokenList
-const testnetTokenList = testnetJson as TokenList
-const devnetTokenList = devnetJson as TokenList
+interface TokenListJson extends TokenList {
+  networkId: number
+  tokens: TokenInfoJson[]
+}
+
+interface TokenInfoJson extends TokenInfo {
+  nameOnChain?: string
+  symbolOnChain?: string
+}
+
+const mainnetTokenList = mainnetJson as TokenListJson
+const testnetTokenList = testnetJson as TokenListJson
+const devnetTokenList = devnetJson as TokenListJson
 
 const tokenLists = [mainnetTokenList, testnetTokenList, devnetTokenList]
 
-const mainnetURL = 'https://wallet-v20.mainnet.alephium.org'
-const testnetURL = 'https://wallet-v20.testnet.alephium.org'
+const mainnetURL = 'https://node.mainnet.alephium.org'
+const testnetURL = 'https://node.testnet.alephium.org'
 
 describe('TokenList', function () {
   it('should contains no duplicate', () => {
@@ -70,33 +80,69 @@ describe('TokenList', function () {
     expect(testnetJson.networkId).toEqual(1)
   })
 
+  it('should not contain extra fields', () => {
+    const allowedFields = ['id', 'name', 'nameOnChain', 'symbol', 'symbolOnChain', 'decimals', 'description', 'logoURI']
+    tokenLists.forEach((tokenList) => {
+      tokenList.tokens.forEach((token) => {
+        const tokenFields = Object.keys(token)
+        tokenFields.forEach((field) => expect(allowedFields).toContain(field))
+      })
+    })
+  })
+
   const mainnetNodeProvider = new NodeProvider(mainnetURL)
   mainnetTokenList.tokens.forEach((token) => {
-    it(`validate mainnet ${token.name}`, async () => {
-      await validateTokenMetadata(token, mainnetNodeProvider)
-      await validateTokenType(token, mainnetNodeProvider)
+    if (token.symbol !== 'ALPH') {
+      it(`validate mainnet ${token.name}`, async () => {
+        await validateTokenMetadata(token, mainnetNodeProvider)
+        await validateTokenType(token, mainnetNodeProvider)
+      })
+    }
+  })
+
+  it('should have ALPH token', () => {
+    const expectedALPH: TokenInfo = {
+      id: ''.padStart(64, '0'),
+      name: 'Alephium',
+      symbol: 'ALPH',
+      decimals: 18,
+      description:
+        'Alephium is a scalable, decentralized, and secure blockchain platform that enables the creation of fast and secure applications.',
+      logoURI: 'https://raw.githubusercontent.com/alephium/token-list/master/logos/ALPH.png'
+    }
+
+    tokenLists.forEach((tokenList) => {
+      expect(tokenList.tokens.find((token) => token.symbol === 'ALPH')).toEqual(expectedALPH)
     })
   })
 
   const testnetNodeProvider = new NodeProvider(testnetURL)
   testnetTokenList.tokens.forEach((token) => {
-    it(`validate testnet ${token.name}`, async () => {
-      await validateTokenMetadata(token, testnetNodeProvider)
-      await validateTokenType(token, testnetNodeProvider)
-    })
+    if (token.symbol !== 'ALPH') {
+      it(`validate testnet ${token.name}`, async () => {
+        await validateTokenMetadata(token, testnetNodeProvider)
+        await validateTokenType(token, testnetNodeProvider)
+      })
+    }
   })
 
   async function validateTokenType(token: TokenInfo, nodeProvider: NodeProvider) {
-    nodeProvider.guessStdTokenType(token.id).then((tokenType) => expect(tokenType).toEqual('fungible'))
+    await nodeProvider.guessStdTokenType(token.id).then((tokenType) => expect(tokenType).toEqual('fungible'))
   }
 
   async function validateTokenMetadata(token: TokenInfo, nodeProvider: NodeProvider) {
-    nodeProvider.fetchFungibleTokenMetaData(token.id).then((metadata) => checkMetadata(metadata, token))
+    await nodeProvider.fetchFungibleTokenMetaData(token.id).then((metadata) => checkMetadata(metadata, token))
   }
 
-  function checkMetadata(metadata: FungibleTokenMetaData, token: TokenInfo) {
-    expect(hexToString(metadata.name)).toEqual(token.name)
-    expect(hexToString(metadata.symbol)).toEqual(token.symbol)
+  const tokensWithSymbolVariant = ['ALF', 'ANS']
+
+  function checkMetadata(metadata: FungibleTokenMetaData, token: TokenInfoJson) {
+    expect(hexToString(metadata.name)).toEqual(token.nameOnChain ?? token.name)
+    expect(hexToString(metadata.symbol)).toEqual(token.symbolOnChain ?? token.symbol)
     expect(metadata.decimals).toEqual(token.decimals)
+
+    if (token.symbolOnChain !== undefined) {
+      expect(tokensWithSymbolVariant.includes(token.symbolOnChain)).toBe(true)
+    }
   }
 })

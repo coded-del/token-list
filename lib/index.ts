@@ -16,33 +16,18 @@ You should have received a copy of the GNU Lesser General Public License
 along with the library. If not, see <http://www.gnu.org/licenses/>.
 */
 
-import mainnetNFTCollectionList from '../nft-collections/mainnet.json'
-import testnetNFTCollectionList from '../nft-collections/testnet.json'
 import mainnetTokenList from '../tokens/mainnet.json'
 import testnetTokenList from '../tokens/testnet.json'
-import { NFTCollectionList, TokenInfo, TokenList } from './types'
+import { NetworkId, TokenInfo, TokenList } from './types'
 
 export * from './types'
 
-export const mainnetTokensMetadata = mainnetTokenList as TokenList
-export const testnetTokensMetadata = testnetTokenList as TokenList
-export const mainnetNFTCollectionsMetadata = mainnetNFTCollectionList as NFTCollectionList
-export const testnetNFTCollectionsMetadata = testnetNFTCollectionList as NFTCollectionList
+export const mainnet = mainnetTokenList as TokenList
+export const testnet = testnetTokenList as TokenList
 
-export default {
-  mainnet: {
-    tokens: mainnetTokensMetadata,
-    nftCollections: mainnetNFTCollectionsMetadata
-  },
-  testnet: {
-    tokens: testnetTokensMetadata,
-    nftCollections: testnetNFTCollectionsMetadata
-  }
-}
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+export const ALPH: TokenInfo = mainnet.tokens.find((token) => token.symbol === 'ALPH')!
 
-export const ALPH: TokenInfo = {
-  id: ''.padStart(64, '0'),
-  name: 'Alephium',
-  symbol: 'ALPH',
-  decimals: 18
+export function getTokensURL(networkId: NetworkId): string {
+  return `https://raw.githubusercontent.com/alephium/token-list/master/tokens/${networkId}.json`
 }
