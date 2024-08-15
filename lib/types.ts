@@ -26,8 +26,15 @@ export interface TokenInfo {
   name: string
   symbol: string
   decimals: number
-  description: string
-  logoURI: string
+  description?: string
+  logoURI?: string
 }
 
-export type NetworkId = 'mainnet' | 'testnet'
+export interface NFTCollectionList {
+  networkId: number
+  nftCollections: NFTCollectionInfo[]
+}
+
+export interface NFTCollectionInfo {
+  id: string
+}
